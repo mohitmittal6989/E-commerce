@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import { ThreeDots } from 'react-loader-spinner'
 
 import ProductCard from '../ProductCard'
+
 import './index.css'
 
 const apiStatusConstants = {
@@ -51,14 +52,15 @@ class PrimeDealsSection extends Component {
         primeDeals: updatedData,
         apiStatus: apiStatusConstants.success,
       })
-    } else if (response.status === 401) {
+    }
+    if (response.status === 401) {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
     }
   }
 
-  renderPrimeDealsList = () => {
+  renderPrimeDealsListView = () => {
     const {primeDeals} = this.state
     return (
       <div>
@@ -75,14 +77,14 @@ class PrimeDealsSection extends Component {
   renderPrimeDealsFailureView = () => (
     <img
       src="https://assets.ccbp.in/frontend/react-js/exclusive-deals-banner-img.png"
-      alt="Register Prime"
-      className="register-prime-image"
+      alt="register prime"
+      className="register-prime-img"
     />
   )
 
   renderLoadingView = () => (
-    <div className="products-loader-container">
-      <ThreeDots  type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    <div className="primedeals-loader-container">
+      <ThreeDots type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
 
@@ -90,7 +92,7 @@ class PrimeDealsSection extends Component {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderPrimeDealsList()
+        return this.renderPrimeDealsListView()
       case apiStatusConstants.failure:
         return this.renderPrimeDealsFailureView()
       case apiStatusConstants.inProgress:

@@ -3,9 +3,11 @@ import {BsFilterRight} from 'react-icons/bs'
 import './index.css'
 
 const ProductsHeader = props => {
-  const {sortbyOptions, activeOptionId, updateActiveOptionId} = props
+  const {sortbyOptions, activeOptionId} = props
+
   const onChangeSortby = event => {
-    updateActiveOptionId(event.target.value)
+    const {changeSortby} = props
+    changeSortby(event.target.value)
   }
 
   return (
@@ -13,7 +15,7 @@ const ProductsHeader = props => {
       <h1 className="products-list-heading">All Products</h1>
       <div className="sort-by-container">
         <BsFilterRight className="sort-by-icon" />
-        <h1 className="sort-by">Sort by</h1>
+        <p className="sort-by">Sort by</p>
         <select
           className="sort-by-select"
           value={activeOptionId}
